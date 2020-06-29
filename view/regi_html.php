@@ -12,13 +12,22 @@
       <div class="section">
         <p>名前</p>
         <p class="condition">10文字以内</p>
-        <input type="text" name="name" value="">
-        </div>
+        <input type="text" name="name" value="<?php echo $input_datas['name'] ?>">
+        <?php if(!empty($errors['name'])){ ?>
+          <div class="error">
+            <?php echo $errors['name']; ?>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="section">
         <p>メールアドレス</p>
-        <input type="email" name="mail" value="">
+        <input type="email" name="mail" value="<?php echo $input_datas['mail'] ?>">
+        <?php if(!empty($errors['mail'])){ ?>
+          <div class="error">
+            <?php echo $errors['mail']; ?>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="section">
@@ -43,24 +52,44 @@
             <option value="<?php echo $data ?>"><?php echo $data?></option>
           <?php } ?>
         </select>
+        <?php if(!empty($errors['birth'])){ ?>
+          <div class="error">
+            <?php echo $errors['birth']; ?>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="section">
         <p>住所</p>
-        <p class="condition">400文字以内</p>
-        <input type="text" name="main" value="">
+        <p class="condition">100文字以内</p>
+        <input type="text" name="address" value="<?php echo $input_datas['address'] ?>">
+        <?php if(!empty($errors['address'])){ ?>
+          <div class="error">
+            <?php echo $errors['address']; ?>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="section">
         <p>性別</p>
         <input type="radio" name="gender" value="M" checked>男性
         <input type="radio" name="gender" value="F">女性
+        <?php if(!empty($errors['gender'])){ ?>
+          <div class="error">
+            <?php echo $errors['gender']; ?>
+          </div>
+        <?php } ?>
       </div>
 
       <div class="section">
         <p>パスワード</p>
         <p class="condition">8文字以上</p>
-        <input type="pasward" name="main" value="">
+        <input type="password" name="pass" value="<?php echo $input_datas['pass'] ?>">
+        <?php if(!empty($errors['pass'])){ ?>
+          <div class="error">
+            <?php echo $errors['pass']; ?>
+          </div>
+        <?php } ?>
       </div>
 
         <p>
@@ -68,6 +97,11 @@
           <input type="hidden" name="check" value="">
           <input type="checkbox" name="check" value="on">同意しました
         </p>
+        <?php if(!empty($errors['check'])){ ?>
+          <div class="error">
+            <?php echo $errors['check']; ?>
+          </div>
+        <?php } ?>
 
       <input type="submit" value='戻る' formaction="index.php">
       <input type="submit" value='確認' formaction="check.php">

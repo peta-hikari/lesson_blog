@@ -11,10 +11,20 @@
 
     <form method='post'>
       <p>メールアドレス</p>
-      <input type="email" name=mail value="">
+      <input type="email" name="mail" value="<?php echo $login_datas['mail']; ?>">
+      <?php if(!empty($errors['mail'])){ ?>
+        <div class="error">
+           <?php echo $errors['mail']; ?>
+        </div>
+      <?php } ?>
 
       <p>パスワード</p>
-      <input type="text" name=pass value="">
+      <input type="password" name="pass" value="<?php echo $login_datas['pass']; ?>">
+      <?php if(!empty($errors['pass'])){ ?>
+        <div class="error">
+           <?php echo $errors['pass']; ?>
+        </div>
+      <?php } ?>
 
       <div>
         <input type="submit" value='ログイン' formaction="top.php">
