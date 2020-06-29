@@ -23,9 +23,6 @@ class InputDB {
 		}
 	}
 
-	/**
-	 * 記事データをDBに保存
-	 */
 	public function saveDbPostData($data){
 
 		// データの保存
@@ -47,5 +44,36 @@ class InputDB {
 		$sql = "SELECT * FROM contact_info";
 		$res = $this->pdo->query($sql);
 		return $res;
-	}
+    }
+
+    public function searchUser($datas){
+        $smt = $this->pdo->prepare('select * from users where mail = ?');
+        $smt->execute([$datas['mail']]);
+        $row = $smt->fetch(PDO::FETCH_ASSOC);
+
+        if ($datas['mail'] != $row['mail']) {
+            echo 'メールアドレス又はパスワードが間違っています。';
+            return false;
+        }
+
+        if ($datas['pass'] == $row['pass']) {
+            echo 'ログインしました';
+            $this->inputLogins($datas);
+            return true;
+        } else {
+            echo 'メールアドレス又はパスワードが間違っています。';
+            return false;
+        }
+
+    }
+
+    protected function inputLogins($datas){
+        $now = date('Y-m-d H:i:s');
+        $smt = $this->pdo->prepare('insert into logins(mail, pass, login_at) 
+        values(:mail, :pass, :login_at)');
+        $smt->bindValue(':mail', $datas['mail'], PDO::PARAM_STR);
+        $smt->bindValue(':pass', $datas['pass'], PDO::PARAM_STR);
+        $smt->bindValue(':login_at', $now, PDO::PARAM_STR);
+        $smt->execute();
+    }
 }
