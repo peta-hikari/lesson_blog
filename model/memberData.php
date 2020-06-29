@@ -25,7 +25,10 @@ class MemberData {
     }
 
     public function getBirth($year, $month, $day){
-        $birth = $year.'-'.$month.'-'.$day;
-        return  date('Y-m-d',strtotime($birth));
+        if(!empty($year) && !empty($month) && !empty($day)){
+            $birth = $year.'-'.$month.'-'.$day;
+            return  date('Y-m-d',strtotime($birth));
+        }
+        return '';
     }
 }

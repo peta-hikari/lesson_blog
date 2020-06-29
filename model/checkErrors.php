@@ -10,11 +10,11 @@ class CheckErrors {
     protected $data_validation=[
                   'name'    => 'Length|Ban|Empty',
                   'mail'    => 'Length|Mail|Empty',
-                  'birth'   => 'Ban|Length|Empty',
+                  'birth'   => 'Ban|Empty',
                   'address' => 'Length|Ban|Empty',
                   'gender'  => 'Gender|Empty',
                   'pass'    => 'Pass|Empty',
-                  'check'   => 'CheckEmpty'
+                  'check'   => 'Ban|Length|Empty'
               ];
 
     protected $errors_empty = [
@@ -38,14 +38,13 @@ class CheckErrors {
               ];
 
     protected $gender_array = ['M', 'F'];
-    protected $check_value  = 'on';
 
     /*
      * @ver string
      */
     protected $mail_pattern = "/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/";
-    protected $char_pattern  = '/[\*\+\?\{\}\(\)\[\]\^\$\|\/\-\"\']/';
-    protected $pass_pattern = '/\A[a-z\d]{8,20}+\z/i';  //半角英数字8文字以上20文字以下
+    protected $char_pattern  = '/[\*\+\?\{\}\(\)\[\]\^\$\|\/\"\']/';
+    protected $pass_pattern = '/\A[a-z\d]{8,20}+\z/i';
 
     /*
      * @param array $input_info
@@ -56,9 +55,8 @@ class CheckErrors {
             $validations = $this->getVali($key);
             foreach($validations as $vali){
                 if($vali == 'Mail') $this->checkMail($data);
-                if($vali == 'Job') $this->checkJob($data);
+                if($vali == 'Pass') $this->checkPass($data);
                 if($vali == 'Gender') $this->checkGender($data);
-                if($vali == 'Check') $this->checkConsent($data);
                 if($vali == 'Empty') $this->checkEmpty($data, $key);
                 if($vali == 'Length') $this->checkLength($data, $key);
                 if($vali == 'Ban') $this->checkChar($data, $key);
@@ -103,12 +101,6 @@ class CheckErrors {
         }
     }
 
-    protected function checkJob($data){
-        if(!in_array($data, $this->job_array)){
-            $this->errors['job'] = "不正な入力です。";
-        }
-    }
-
     protected function checkGender($data){
         if(!in_array($data, $this->gender_array)){
             $this->errors['gender'] = "不正な入力です。";
@@ -121,9 +113,9 @@ class CheckErrors {
         }
     }
 
-    protected function checkConsent($data){
-        if($this->check_value != $data){
-            $this->errors['check'] = '不正な入力です。';
+    protected function checkPass($data){
+        if(!preg_match($this->pass_pattern, $data)){
+            $this->errors['pass'] = '半角英数字で8文字以上20文字以下入力してください。';
         }
     }
 }
