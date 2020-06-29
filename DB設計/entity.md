@@ -49,8 +49,9 @@
 |3   |mail       |メールアドレス|varchar|50   |NOT NULL       |    |  |  |            |    |●   |         |
 |4   |pass       |パスワード    |varchar|20   |NOT NULL       |    |  |  |            |    |●   |         |
 |5   |birth      |生年月日      |date   |     |NOT NULL       |    |  |  |            |    |●   |         |
-|6   |adress     |住所          |varchar|100  |NOT NULL       |    |  |  |            |    |●   |         |
-|7   |regi_at    |登録日        |date   |     |NOT NULL       |    |  |  |            |    |●   |         |
+|6   |address    |住所          |varchar|100  |NOT NULL       |    |  |  |            |    |●   |         |
+|7   |gender     |性別          |varchar|10   |NOT NULL       |    |  |  |            |    |●   |         |
+|8   |regi_at    |登録日        |date   |     |NOT NULL       |    |  |  |            |    |●   |         |
 
 &ensp;
 
