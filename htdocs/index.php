@@ -1,11 +1,15 @@
 <?php
 include '../model/loginData.php';
+include '../model/ctrlSession.php';
+
 $logindata = new LoginData;
+$ctrlsession = new CtrlSession;
+
+if(!empty($_POST['logout'])){
+    $ctrlsession->endSession();
+}
 
 $login_items = $logindata->getItems();
-/*foreach($login_items as $key){
-    $logindata->setData($_POST[$key], $key);
-}*/
 $login_datas = $logindata->getData();
 
 

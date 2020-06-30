@@ -52,16 +52,13 @@ class InputDB {
         $row = $smt->fetch(PDO::FETCH_ASSOC);
 
         if ($datas['mail'] != $row['mail']) {
-            echo 'メールアドレス又はパスワードが間違っています。';
             return false;
         }
 
         if ($datas['pass'] == $row['pass']) {
-            echo 'ログインしました';
-            $this->inputLogins($datas);
+            //$this->inputLogins($datas);
             return true;
         } else {
-            echo 'メールアドレス又はパスワードが間違っています。';
             return false;
         }
 

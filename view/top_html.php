@@ -11,7 +11,7 @@
     <div>
       <input type="submit" value='投稿する' formaction="post.php">
       <input type="submit" value='My Page' formaction="user.php">
-      <input type="submit" value='ログアウト' formaction="index.php">
+      <input type="submit" name="logout" value='ログアウト' formaction="index.php">
       </div>
     </form>
   </body>
