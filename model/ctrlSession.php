@@ -3,8 +3,6 @@
 class CtrlSession {
 
     public function startSession($datas){
-
-       // session_start();
         foreach($datas as $key => $value){
             $_SESSION[$key] = $value;
         }

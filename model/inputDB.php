@@ -56,7 +56,7 @@ class InputDB {
         }
 
         if ($datas['pass'] == $row['pass']) {
-            //$this->inputLogins($datas);
+            $this->inputLogins($datas);
             return true;
         } else {
             return false;
