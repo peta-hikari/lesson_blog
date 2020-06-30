@@ -8,23 +8,29 @@ class CheckErrors {
     public $errors = [];
 
     protected $data_validation=[
-                  'name'    => 'Length|Ban|Empty',
-                  'mail'    => 'Length|Mail|Empty',
-                  'birth'   => 'Ban|Empty',
-                  'address' => 'Length|Ban|Empty',
-                  'gender'  => 'Gender|Empty',
-                  'pass'    => 'Pass|Empty',
-                  'check'   => 'Ban|Length|Empty'
+                  'name'        => 'Length|Ban|Empty',
+                  'mail'        => 'Length|Mail|Empty',
+                  'birth'       => 'Ban|Empty',
+                  'address'     => 'Length|Ban|Empty',
+                  'gender'      => 'Gender|Empty',
+                  'pass'        => 'Pass|Empty',
+                  'check'       => 'Ban|Length|Empty',
+                  'title'       => 'Ban|Length|Empty',
+                  'category_id' => 'Ban|Empty',
+                  'body'        => 'Ban|Length|Empty'
               ];
 
     protected $errors_empty = [
-                "name"    => '未入力です。名前を入力してください。',
-                "mail"    => '未入力です。メールアドレスを入力してください。',
-                "birth"   => '未入力です。生年月日を選択してください。',
-                "address" => '未入力です。住所を入力してください。',
-                "gender"  => '性別を選択してください。',
-                "pass"    => '未入力です。パスワードを入力してください。',
-                "check"   => '会員登録をするには同意していただく必要があります。'
+                "name"        => '未入力です。名前を入力してください。',
+                "mail"        => '未入力です。メールアドレスを入力してください。',
+                "birth"       => '未入力です。生年月日を選択してください。',
+                "address"     => '未入力です。住所を入力してください。',
+                "gender"      => '性別を選択してください。',
+                "pass"        => '未入力です。パスワードを入力してください。',
+                "check"       => '会員登録をするには同意していただく必要があります。',
+                "title"       => '未入力です。タイトルを入力してください。',
+                "category_id" => 'カテゴリーを選択してください。',
+                "body"    => '未入力です。本文を入力してください。'
               ];
 
     protected $errors_length = [
@@ -34,7 +40,9 @@ class CheckErrors {
                 "address" => 100,
                 "gender"  => 10,
                 "pass"    => 10,
-                "check"   => 10
+                "check"   => 10,
+                "title"   => 100,
+                "body"    => 10000,
               ];
 
     protected $gender_array = ['M', 'F'];
@@ -87,7 +95,7 @@ class CheckErrors {
      */
     protected function checkChar($data ,$key){
         if(preg_match($this->char_pattern, $data)){
-            $this->errors[$key] = '禁則文字が含まれています。*+?{}()[]^$|/-\"\'は使えません。';
+            $this->errors[$key] = '禁則文字が含まれています。*+?{}()[]^$|/\"\'は使えません。';
         }
     }
 
