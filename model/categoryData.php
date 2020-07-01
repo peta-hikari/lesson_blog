@@ -21,7 +21,7 @@ class CategoryData {
     }
 
     public function getItems(){
-        return $this->category_items;
+        return $this->category_names;
     }
 
     public function getCategories(){

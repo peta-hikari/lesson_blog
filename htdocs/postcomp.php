@@ -11,9 +11,9 @@ session_start();
 $errors = [];
 $categories = [];
 
-$res = $inputdb->getCategories();
-$categorydata->setCategories($res);
-$categories = $categorydata->getCategories();
+//$res = $inputdb->getCategories();
+//$categorydata->setCategories($res);
+//$categories = $categorydata->getCategories();
 $category_items = $categorydata->getItems();
 
 $post_items = $postdata->getItems();
@@ -22,6 +22,7 @@ foreach($post_items as $value){
 }
 $input_posts = $postdata->getPost();
 
+$checkerrors->setCategory(count($category_items));
 if(! $checkerrors->checkDataerrors($input_posts)) {
     $errors = $checkerrors->getErrors();
     include '../view/post_html.php';

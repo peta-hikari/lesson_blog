@@ -47,9 +47,12 @@ class InputDB {
     }
 
     protected function getUserid($mail, $pass){
-        $smt = $this->pdo->prepare("select id from users where mail = ? and pass = ?");
-        $smt->bind_param($mail, $pass);
+        $smt = $this->pdo->prepare("select id from users where mail = :mail and pass = :pass");
+        $smt->bindValue(':mail', $mail);
+        $smt->bindValue('pass', $pass);
         $smt->execute();
+        $row = $smt->fetch(PDO::FETCH_ASSOC);
+        return $row;
     }
 
     public function searchUser($datas){
@@ -82,15 +85,13 @@ class InputDB {
 
     public function inputPosts($datas){
         $user_id = $this->getUserid($_SESSION['mail'], $_SESSION['pass']);
-        var_dump($user_id);
-        exit();
         $now = date('Y-m-d H:i:s');
         $smt = $this->pdo->prepare('insert into posts(title, body, user_id, category_id, post_at) 
         values(:title, :body, :user_id, :category_id, :post_at)');
         $smt->bindValue(':title', $datas['title'], PDO::PARAM_STR);
         $smt->bindValue(':body', $datas['body'], PDO::PARAM_STR);
         $smt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $smt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $smt->bindValue(':category_id', $datas['category_id'], PDO::PARAM_INT);
         $smt->bindValue(':post_at', $now, PDO::PARAM_STR);
         $smt->execute();
     }

@@ -16,7 +16,7 @@ class CheckErrors {
                   'pass'        => 'Pass|Empty',
                   'check'       => 'Ban|Length|Empty',
                   'title'       => 'Ban|Length|Empty',
-                  'category_id' => 'Ban|Empty',
+                  'category_id' => 'Category',
                   'body'        => 'Ban|Length|Empty'
               ];
 
@@ -46,6 +46,7 @@ class CheckErrors {
               ];
 
     protected $gender_array = ['M', 'F'];
+    protected $category_vali;
 
     /*
      * @ver string
@@ -68,6 +69,7 @@ class CheckErrors {
                 if($vali == 'Empty') $this->checkEmpty($data, $key);
                 if($vali == 'Length') $this->checkLength($data, $key);
                 if($vali == 'Ban') $this->checkChar($data, $key);
+                if($vali == 'Category') $this->checkCategory($data);
             }
         }
         //return var_dump($this->errors);
@@ -125,5 +127,16 @@ class CheckErrors {
         if(!preg_match($this->pass_pattern, $data)){
             $this->errors['pass'] = '半角英数字で8文字以上20文字以下入力してください。';
         }
+    }
+
+    public function setCategory($data){
+        $this->category_vali = $data;
+    }
+
+    protected function checkCategory($data){
+        if(0 < $data && $data < $this->category_vali){
+            return ;
+        }
+        $this->errors['category_id'] = 'カテゴリ一覧からカテゴリーを選んでください。';
     }
 }
