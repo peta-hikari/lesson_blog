@@ -7,11 +7,13 @@
   <body>
     <h1>Time Line</h1>
 
-    <?php foreach($view_posts as $row){
-            foreach($row as $data){ ?>
-      <p><?php echo $data ?></p>
-    <?php   }
-          } ?>
+    <?php foreach($view_posts as $row){?>
+      <div>
+        <?php foreach($row as $data){ ?>
+          <span><?php echo $data ?></span>
+        <?php } ?>
+      </div>
+    <?php } ?>
 
     <form method='post'>
     <div>

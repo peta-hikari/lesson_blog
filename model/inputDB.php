@@ -96,7 +96,7 @@ class InputDB {
         values(:title, :body, :user_id, :category_id, :post_at)');
         $smt->bindValue(':title', $datas['title'], PDO::PARAM_STR);
         $smt->bindValue(':body', $datas['body'], PDO::PARAM_STR);
-        $smt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $smt->bindValue(':user_id', $user_id['id'], PDO::PARAM_INT);
         $smt->bindValue(':category_id', $datas['category_id'], PDO::PARAM_INT);
         $smt->bindValue(':post_at', $now, PDO::PARAM_STR);
         $smt->execute();

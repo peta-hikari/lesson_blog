@@ -11,9 +11,6 @@ session_start();
 $errors = [];
 $categories = [];
 
-//$res = $inputdb->getCategories();
-//$categorydata->setCategories($res);
-//$categories = $categorydata->getCategories();
 $category_items = $categorydata->getItems();
 
 $post_items = $postdata->getItems();
