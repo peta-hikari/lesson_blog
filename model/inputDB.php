@@ -46,6 +46,12 @@ class InputDB {
 		return $res;
     }
 
+    public function getPosts(){
+        $sql = "select title, body, category_id from posts";
+        $res = $this->pdo->query($sql);
+        return $res;
+    }
+
     protected function getUserid($mail, $pass){
         $smt = $this->pdo->prepare("select id from users where mail = :mail and pass = :pass");
         $smt->bindValue(':mail', $mail);

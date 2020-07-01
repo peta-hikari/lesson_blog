@@ -7,6 +7,12 @@
   <body>
     <h1>Time Line</h1>
 
+    <?php foreach($view_posts as $row){
+            foreach($row as $data){ ?>
+      <p><?php echo $data ?></p>
+    <?php   }
+          } ?>
+
     <form method='post'>
     <div>
       <input type="submit" value='投稿する' formaction="post.php">
