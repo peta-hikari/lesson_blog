@@ -11,6 +11,7 @@
     <div>
       <input type="submit" value='投稿する' formaction="post.php">
       <input type="submit" value='会員情報の変更' formaction="updata.php">
+      <input type="submit" value='Top' formaction="top.php">
       <input type="submit" name="logout" value='ログアウト' formaction="index.php">
       </div>
     </form>
